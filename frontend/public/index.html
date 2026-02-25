@@ -1,11 +1,290 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mobile Ownership Verification</title>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+        name="description"
+        content="HoneyKYC - Mobile Ownership Verification with Honeypot Fraud Detection"
+    />
+    <meta name="keywords" content="KYC, fraud detection, mobile verification, banking security" />
+    <meta name="author" content="HoneyKYC Team" />
+    
+    <!-- Open Graph tags -->
+    <meta property="og:title" content="HoneyKYC - Mobile Ownership Verification" />
+    <meta property="og:description" content="Verify mobile ownership and detect fraud with honeypot technology" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://localhost:3000" />
+    
+    <!-- FIXED: Content Security Policy - Allows connection to backend on port 5000 -->
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self';
+        connect-src 'self' http://localhost:5000 http://127.0.0.1:5000 ws://localhost:3000 ws://localhost:5000;
+        script-src 'self' 'unsafe-inline' 'unsafe-eval';
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+        font-src 'self' https://fonts.gstatic.com;
+        img-src 'self' data:;
+    ">
+    
+    <title>HoneyKYC - Mobile Ownership Verification</title>
+    
+    <!-- Preload fonts and styles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- PWA manifest (optional) -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    
+    <style>
+        /* Fallback styles while React loads */
+        .initial-loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255,255,255,0.3);
+            border-top: 5px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
 </head>
 <body>
-  <div id="root"></div>
+    <noscript>
+        <div style="
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Inter', Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        ">
+            <div>
+                <h1 style="font-size: 2.5rem; margin-bottom: 20px;">⚠️ JavaScript Required</h1>
+                <p style="font-size: 1.2rem; margin-bottom: 30px;">HoneyKYC requires JavaScript to verify mobile ownership and detect fraud.</p>
+                <p style="font-size: 1rem; opacity: 0.9;">Please enable JavaScript in your browser settings to continue.</p>
+            </div>
+        </div>
+    </noscript>
+    
+    <!-- Show loading indicator until React loads -->
+    <div id="initial-loading" class="initial-loading">
+        <div>
+            <div class="loading-spinner"></div>
+            <h2>Loading HoneyKYC...</h2>
+            <p>Mobile Ownership Verification System</p>
+        </div>
+    </div>
+    
+    <!-- React root element -->
+    <div id="root" style="display: none;"></div>
+    
+    <!-- Honeypot trap for bots (invisible) -->
+    <div style="display: none;">
+        <a href="/admin" id="honeypot-link">Admin Access</a>
+        <input type="text" name="honeypot-field" id="honeypot-field" tabindex="-1" autocomplete="off">
+        <button id="hidden-trap" onclick="window.triggerHoneypot && window.triggerHoneypot()">Hidden Button</button>
+    </div>
+    
+    <!-- Fraud detection script (runs even before React loads) -->
+    <script>
+        // Hide loading when React is ready
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                const loading = document.getElementById('initial-loading');
+                const root = document.getElementById('root');
+                if (loading && root) {
+                    loading.style.display = 'none';
+                    root.style.display = 'block';
+                }
+            }, 1000);
+        });
+
+        // Immediate fraud detection triggers
+        (function() {
+            console.log('🔒 HoneyKYC Security Monitor Active');
+            
+            // Track page load time
+            window.performance.mark('honeykyc-start');
+            
+            // Set up honeypot triggers
+            window.triggerHoneypot = function() {
+                console.log('⚠️ Honeypot triggered - suspicious activity detected');
+                // Send to backend if available
+                fetch('http://localhost:5000/api/verify/behavior', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        type: 'honeypot_click',
+                        element: 'hidden_trap',
+                        timestamp: new Date().toISOString()
+                    })
+                }).catch(err => console.log('Honeypot tracking:', err.message));
+            };
+            
+            // Detect automation tools
+            const automationIndicators = [
+                navigator.webdriver,
+                window.callPhantom,
+                window._phantom,
+                window.__phantomas,
+                window.Buffer,
+                window.CouchDB,
+                navigator.plugins?.length === 0,
+                navigator.languages?.length === 0
+            ].some(indicator => indicator);
+            
+            if (automationIndicators) {
+                console.log('🤖 Automation tool detected');
+                fetch('http://localhost:5000/api/verify/behavior', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        type: 'automation_detected',
+                        timestamp: new Date().toISOString()
+                    })
+                }).catch(() => {});
+            }
+            
+            // Track copy-paste
+            document.addEventListener('copy', function() {
+                fetch('http://localhost:5000/api/verify/behavior', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        type: 'copy_paste',
+                        action: 'copy',
+                        timestamp: new Date().toISOString()
+                    })
+                }).catch(() => {});
+            });
+            
+            document.addEventListener('paste', function() {
+                fetch('http://localhost:5000/api/verify/behavior', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        type: 'copy_paste',
+                        action: 'paste',
+                        timestamp: new Date().toISOString()
+                    })
+                }).catch(() => {});
+            });
+            
+            // Track mouse movements (throttled)
+            let mouseMovements = 0;
+            let mouseTimeout;
+            document.addEventListener('mousemove', function() {
+                mouseMovements++;
+                if (!mouseTimeout) {
+                    mouseTimeout = setTimeout(function() {
+                        fetch('http://localhost:5000/api/verify/behavior', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                type: 'mouse_movement',
+                                count: mouseMovements,
+                                timestamp: new Date().toISOString()
+                            })
+                        }).catch(() => {});
+                        mouseTimeout = null;
+                    }, 5000);
+                }
+            });
+            
+            // Track scroll behavior
+            let scrollCount = 0;
+            let scrollTimeout;
+            document.addEventListener('scroll', function() {
+                scrollCount++;
+                if (!scrollTimeout) {
+                    scrollTimeout = setTimeout(function() {
+                        fetch('http://localhost:5000/api/verify/behavior', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                type: 'scroll_behavior',
+                                scrollY: window.scrollY,
+                                count: scrollCount,
+                                timestamp: new Date().toISOString()
+                            })
+                        }).catch(() => {});
+                        scrollTimeout = null;
+                    }, 3000);
+                }
+            });
+            
+            // Track tab switching
+            window.addEventListener('blur', function() {
+                fetch('http://localhost:5000/api/verify/behavior', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        type: 'tab_switch',
+                        action: 'blur',
+                        timestamp: new Date().toISOString()
+                    })
+                }).catch(() => {});
+            });
+            
+            window.addEventListener('focus', function() {
+                fetch('http://localhost:5000/api/verify/behavior', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        type: 'tab_switch',
+                        action: 'focus',
+                        timestamp: new Date().toISOString()
+                    })
+                }).catch(() => {});
+            });
+            
+            // Test backend connection on load
+            fetch('http://localhost:5000/api/health')
+                .then(res => res.json())
+                .then(data => console.log('✅ Backend connected:', data))
+                .catch(err => console.warn('⚠️ Backend not connected:', err.message));
+            
+            console.log('✅ HoneyKYC fraud detection initialized');
+        })();
+    </script>
+    
+    <!-- Fallback for older browsers -->
+    <!--[if lt IE 10]>
+        <div style="
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #f44336;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            z-index: 9999;
+        ">
+            <strong>⚠️ You are using an outdated browser.</strong> 
+            Please upgrade to a modern browser for the best experience.
+        </div>
+    <![endif]-->
 </body>
 </html>

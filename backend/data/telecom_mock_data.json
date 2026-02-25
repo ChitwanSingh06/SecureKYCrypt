@@ -1,10 +1,90 @@
 {
-    "9876543210": {
-      "owner": "Rahul Sharma",
-      "sim_age": 3
-    },
-    "9123456789": {
-      "owner": "Amit Kumar",
-      "sim_age": 0
-    }
+  "9876543210": {
+      "owner_name": "Rahul Sharma",
+      "provider": "Jio",
+      "activation_date": "2020-01-15",
+      "kyc_status": "verified",
+      "aadhar_linked": true,
+      "pan_linked": true,
+      "address": "Mumbai, Maharashtra",
+      "email": "rahul.sharma@email.com",
+      "risk_score": 10
+  },
+  "9123456789": {
+      "owner_name": "Amit Kumar",
+      "provider": "Airtel",
+      "activation_date": "2021-06-20",
+      "kyc_status": "verified",
+      "aadhar_linked": true,
+      "pan_linked": true,
+      "address": "Delhi, NCR",
+      "email": "amit.kumar@email.com",
+      "risk_score": 15
+  },
+  "9988776655": {
+      "owner_name": "Priya Singh",
+      "provider": "VI",
+      "activation_date": "2026-02-01",
+      "kyc_status": "pending",
+      "aadhar_linked": false,
+      "pan_linked": true,
+      "address": "Bangalore, Karnataka",
+      "email": "priya.singh@email.com",
+      "risk_score": 40
+  },
+  "8888888888": {
+      "owner_name": "Unknown",
+      "provider": "Jio",
+      "activation_date": "2026-02-24",
+      "kyc_status": "unverified",
+      "aadhar_linked": false,
+      "pan_linked": false,
+      "address": "Not Available",
+      "email": "unknown@temp.com",
+      "risk_score": 80
+  },
+  "9999999999": {
+      "owner_name": "Test User",
+      "provider": "BSNL",
+      "activation_date": "2026-01-01",
+      "kyc_status": "verified",
+      "aadhar_linked": true,
+      "pan_linked": true,
+      "address": "Chennai, Tamil Nadu",
+      "email": "test.user@email.com",
+      "risk_score": 25
+  },
+  "7777777777": {
+      "owner_name": "Sneha Reddy",
+      "provider": "Airtel",
+      "activation_date": "2019-11-10",
+      "kyc_status": "verified",
+      "aadhar_linked": true,
+      "pan_linked": true,
+      "address": "Hyderabad, Telangana",
+      "email": "sneha.reddy@email.com",
+      "risk_score": 5
+  },
+  "6666666666": {
+      "owner_name": "Vikram Mehta",
+      "provider": "Jio",
+      "activation_date": "2022-03-15",
+      "kyc_status": "verified",
+      "aadhar_linked": true,
+      "pan_linked": true,
+      "address": "Ahmedabad, Gujarat",
+      "email": "vikram.mehta@email.com",
+      "risk_score": 20
+  },
+  "5555555555": {
+      "owner_name": "Anjali Desai",
+      "provider": "VI",
+      "activation_date": "2025-12-01",
+      "kyc_status": "pending",
+      "aadhar_linked": false,
+      "pan_linked": true,
+      "address": "Pune, Maharashtra",
+      "email": "anjali.desai@email.com",
+      "risk_score": 35
   }
+}
