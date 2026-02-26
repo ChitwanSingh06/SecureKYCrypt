@@ -1,5 +1,5 @@
 {
-  "9876543210": {
+    "9876543210": {
       "owner_name": "Rahul Sharma",
       "provider": "Jio",
       "activation_date": "2020-01-15",
@@ -9,8 +9,8 @@
       "address": "Mumbai, Maharashtra",
       "email": "rahul.sharma@email.com",
       "risk_score": 10
-  },
-  "9123456789": {
+    },
+    "9123456789": {
       "owner_name": "Amit Kumar",
       "provider": "Airtel",
       "activation_date": "2021-06-20",
@@ -20,8 +20,8 @@
       "address": "Delhi, NCR",
       "email": "amit.kumar@email.com",
       "risk_score": 15
-  },
-  "9988776655": {
+    },
+    "9988776655": {
       "owner_name": "Priya Singh",
       "provider": "VI",
       "activation_date": "2026-02-01",
@@ -31,8 +31,8 @@
       "address": "Bangalore, Karnataka",
       "email": "priya.singh@email.com",
       "risk_score": 40
-  },
-  "8888888888": {
+    },
+    "8888888888": {
       "owner_name": "Unknown",
       "provider": "Jio",
       "activation_date": "2026-02-24",
@@ -42,8 +42,8 @@
       "address": "Not Available",
       "email": "unknown@temp.com",
       "risk_score": 80
-  },
-  "9999999999": {
+    },
+    "9999999999": {
       "owner_name": "Test User",
       "provider": "BSNL",
       "activation_date": "2026-01-01",
@@ -53,8 +53,8 @@
       "address": "Chennai, Tamil Nadu",
       "email": "test.user@email.com",
       "risk_score": 25
-  },
-  "7777777777": {
+    },
+    "7777777777": {
       "owner_name": "Sneha Reddy",
       "provider": "Airtel",
       "activation_date": "2019-11-10",
@@ -64,8 +64,8 @@
       "address": "Hyderabad, Telangana",
       "email": "sneha.reddy@email.com",
       "risk_score": 5
-  },
-  "6666666666": {
+    },
+    "6666666666": {
       "owner_name": "Vikram Mehta",
       "provider": "Jio",
       "activation_date": "2022-03-15",
@@ -75,8 +75,8 @@
       "address": "Ahmedabad, Gujarat",
       "email": "vikram.mehta@email.com",
       "risk_score": 20
-  },
-  "5555555555": {
+    },
+    "5555555555": {
       "owner_name": "Anjali Desai",
       "provider": "VI",
       "activation_date": "2025-12-01",
@@ -86,261 +86,170 @@
       "address": "Pune, Maharashtra",
       "email": "anjali.desai@email.com",
       "risk_score": 35
+    },
+    "9011111111": {
+      "owner_name": "Arjun Nair",
+      "provider": "Jio",
+      "activation_date": "2018-04-12",
+      "kyc_status": "verified",
+      "aadhar_linked": true,
+      "pan_linked": true,
+      "address": "Kochi, Kerala",
+      "email": "arjun.nair@email.com",
+      "risk_score": 7
+    },
+    "9022222222": {
+      "owner_name": "Meera Iyer",
+      "provider": "Airtel",
+      "activation_date": "2020-09-18",
+      "kyc_status": "verified",
+      "aadhar_linked": true,
+      "pan_linked": true,
+      "address": "Chennai, Tamil Nadu",
+      "email": "meera.iyer@email.com",
+      "risk_score": 12
+    },
+    "9033333333": {
+      "owner_name": "Rohan Gupta",
+      "provider": "VI",
+      "activation_date": "2026-02-10",
+      "kyc_status": "pending",
+      "aadhar_linked": false,
+      "pan_linked": false,
+      "address": "Lucknow, Uttar Pradesh",
+      "email": "rohan.gupta@email.com",
+      "risk_score": 60
+    },
+    "9044444444": {
+      "owner_name": "Kavya Menon",
+      "provider": "Jio",
+      "activation_date": "2017-07-21",
+      "kyc_status": "verified",
+      "aadhar_linked": true,
+      "pan_linked": true,
+      "address": "Coimbatore, Tamil Nadu",
+      "email": "kavya.menon@email.com",
+      "risk_score": 8
+    },
+    "9055555555": {
+      "owner_name": "Siddharth Rao",
+      "provider": "BSNL",
+      "activation_date": "2026-01-28",
+      "kyc_status": "unverified",
+      "aadhar_linked": false,
+      "pan_linked": false,
+      "address": "Jaipur, Rajasthan",
+      "email": "sid.rao@email.com",
+      "risk_score": 85
+    },
+    "9066666666": {
+      "owner_name": "Pooja Verma",
+      "provider": "Airtel",
+      "activation_date": "2019-03-14",
+      "kyc_status": "verified",
+      "aadhar_linked": true,
+      "pan_linked": true,
+      "address": "Bhopal, Madhya Pradesh",
+      "email": "pooja.verma@email.com",
+      "risk_score": 10
+    },
+    "9077777777": {
+      "owner_name": "Manish Tiwari",
+      "provider": "Jio",
+      "activation_date": "2026-02-22",
+      "kyc_status": "pending",
+      "aadhar_linked": false,
+      "pan_linked": true,
+      "address": "Patna, Bihar",
+      "email": "manish.tiwari@email.com",
+      "risk_score": 50
+    },
+    "9088888888": {
+      "owner_name": "Neha Kapoor",
+      "provider": "VI",
+      "activation_date": "2022-11-05",
+      "kyc_status": "verified",
+      "aadhar_linked": true,
+      "pan_linked": true,
+      "address": "Noida, Uttar Pradesh",
+      "email": "neha.kapoor@email.com",
+      "risk_score": 18
+    },
+    "9099999999": {
+      "owner_name": "Deepak Sinha",
+      "provider": "Airtel",
+      "activation_date": "2025-12-30",
+      "kyc_status": "pending",
+      "aadhar_linked": false,
+      "pan_linked": false,
+      "address": "Ranchi, Jharkhand",
+      "email": "deepak.sinha@email.com",
+      "risk_score": 55
+    },
+    "9100000000": {
+      "owner_name": "Tanvi Joshi",
+      "provider": "Jio",
+      "activation_date": "2016-01-19",
+      "kyc_status": "verified",
+      "aadhar_linked": true,
+      "pan_linked": true,
+      "address": "Surat, Gujarat",
+      "email": "tanvi.joshi@email.com",
+      "risk_score": 6
+    },
+    "9111111111": {
+      "owner_name": "Aditya Malhotra",
+      "provider": "VI",
+      "activation_date": "2026-02-25",
+      "kyc_status": "unverified",
+      "aadhar_linked": false,
+      "pan_linked": false,
+      "address": "Indore, Madhya Pradesh",
+      "email": "aditya.m@email.com",
+      "risk_score": 90
+    },
+    "9133333333": {
+      "owner_name": "Shruti Kulkarni",
+      "provider": "BSNL",
+      "activation_date": "2021-08-17",
+      "kyc_status": "verified",
+      "aadhar_linked": true,
+      "pan_linked": true,
+      "address": "Nagpur, Maharashtra",
+      "email": "shruti.k@email.com",
+      "risk_score": 15
+    },
+    "9144444444": {
+      "owner_name": "Harsh Vardhan",
+      "provider": "Jio",
+      "activation_date": "2026-02-18",
+      "kyc_status": "pending",
+      "aadhar_linked": false,
+      "pan_linked": true,
+      "address": "Varanasi, Uttar Pradesh",
+      "email": "harsh.v@email.com",
+      "risk_score": 45
+    },
+    "9155555555": {
+      "owner_name": "Divya Sharma",
+      "provider": "Airtel",
+      "activation_date": "2019-10-09",
+      "kyc_status": "verified",
+      "aadhar_linked": true,
+      "pan_linked": true,
+      "address": "Gurgaon, Haryana",
+      "email": "divya.sharma@email.com",
+      "risk_score": 9
+    },
+    "9166666666": {
+      "owner_name": "Akash Patel",
+      "provider": "VI",
+      "activation_date": "2026-01-15",
+      "kyc_status": "pending",
+      "aadhar_linked": false,
+      "pan_linked": false,
+      "address": "Vadodara, Gujarat",
+      "email": "akash.patel@email.com",
+      "risk_score": 65
+    }
   }
-  {
-  "9876543210": {
-    "owner_name": "Rahul Sharma",
-    "provider": "Jio",
-    "activation_date": "2020-01-15",
-    "kyc_status": "verified",
-    "aadhar_linked": true,
-    "pan_linked": true,
-    "address": "Mumbai, Maharashtra",
-    "email": "rahul.sharma@email.com",
-    "risk_score": 10
-  },
-  "9123456789": {
-    "owner_name": "Amit Kumar",
-    "provider": "Airtel",
-    "activation_date": "2021-06-20",
-    "kyc_status": "verified",
-    "aadhar_linked": true,
-    "pan_linked": true,
-    "address": "Delhi, NCR",
-    "email": "amit.kumar@email.com",
-    "risk_score": 15
-  },
-  "9988776655": {
-    "owner_name": "Priya Singh",
-    "provider": "VI",
-    "activation_date": "2026-02-01",
-    "kyc_status": "pending",
-    "aadhar_linked": false,
-    "pan_linked": true,
-    "address": "Bangalore, Karnataka",
-    "email": "priya.singh@email.com",
-    "risk_score": 40
-  },
-  "8888888888": {
-    "owner_name": "Unknown",
-    "provider": "Jio",
-    "activation_date": "2026-02-24",
-    "kyc_status": "unverified",
-    "aadhar_linked": false,
-    "pan_linked": false,
-    "address": "Not Available",
-    "email": "unknown@temp.com",
-    "risk_score": 80
-  },
-  "9999999999": {
-    "owner_name": "Test User",
-    "provider": "BSNL",
-    "activation_date": "2026-01-01",
-    "kyc_status": "verified",
-    "aadhar_linked": true,
-    "pan_linked": true,
-    "address": "Chennai, Tamil Nadu",
-    "email": "test.user@email.com",
-    "risk_score": 25
-  },
-  "7777777777": {
-    "owner_name": "Sneha Reddy",
-    "provider": "Airtel",
-    "activation_date": "2019-11-10",
-    "kyc_status": "verified",
-    "aadhar_linked": true,
-    "pan_linked": true,
-    "address": "Hyderabad, Telangana",
-    "email": "sneha.reddy@email.com",
-    "risk_score": 5
-  },
-  "6666666666": {
-    "owner_name": "Vikram Mehta",
-    "provider": "Jio",
-    "activation_date": "2022-03-15",
-    "kyc_status": "verified",
-    "aadhar_linked": true,
-    "pan_linked": true,
-    "address": "Ahmedabad, Gujarat",
-    "email": "vikram.mehta@email.com",
-    "risk_score": 20
-  },
-  "5555555555": {
-    "owner_name": "Anjali Desai",
-    "provider": "VI",
-    "activation_date": "2025-12-01",
-    "kyc_status": "pending",
-    "aadhar_linked": false,
-    "pan_linked": true,
-    "address": "Pune, Maharashtra",
-    "email": "anjali.desai@email.com",
-    "risk_score": 35
-  },
-
-  "9011111111": {
-    "owner_name": "Arjun Nair",
-    "provider": "Jio",
-    "activation_date": "2018-04-12",
-    "kyc_status": "verified",
-    "aadhar_linked": true,
-    "pan_linked": true,
-    "address": "Kochi, Kerala",
-    "email": "arjun.nair@email.com",
-    "risk_score": 7
-  },
-  "9022222222": {
-    "owner_name": "Meera Iyer",
-    "provider": "Airtel",
-    "activation_date": "2020-09-18",
-    "kyc_status": "verified",
-    "aadhar_linked": true,
-    "pan_linked": true,
-    "address": "Chennai, Tamil Nadu",
-    "email": "meera.iyer@email.com",
-    "risk_score": 12
-  },
-  "9033333333": {
-    "owner_name": "Rohan Gupta",
-    "provider": "VI",
-    "activation_date": "2026-02-10",
-    "kyc_status": "pending",
-    "aadhar_linked": false,
-    "pan_linked": false,
-    "address": "Lucknow, Uttar Pradesh",
-    "email": "rohan.gupta@email.com",
-    "risk_score": 60
-  },
-  "9044444444": {
-    "owner_name": "Kavya Menon",
-    "provider": "Jio",
-    "activation_date": "2017-07-21",
-    "kyc_status": "verified",
-    "aadhar_linked": true,
-    "pan_linked": true,
-    "address": "Coimbatore, Tamil Nadu",
-    "email": "kavya.menon@email.com",
-    "risk_score": 8
-  },
-  "9055555555": {
-    "owner_name": "Siddharth Rao",
-    "provider": "BSNL",
-    "activation_date": "2026-01-28",
-    "kyc_status": "unverified",
-    "aadhar_linked": false,
-    "pan_linked": false,
-    "address": "Jaipur, Rajasthan",
-    "email": "sid.rao@email.com",
-    "risk_score": 85
-  },
-  "9066666666": {
-    "owner_name": "Pooja Verma",
-    "provider": "Airtel",
-    "activation_date": "2019-03-14",
-    "kyc_status": "verified",
-    "aadhar_linked": true,
-    "pan_linked": true,
-    "address": "Bhopal, Madhya Pradesh",
-    "email": "pooja.verma@email.com",
-    "risk_score": 10
-  },
-  "9077777777": {
-    "owner_name": "Manish Tiwari",
-    "provider": "Jio",
-    "activation_date": "2026-02-22",
-    "kyc_status": "pending",
-    "aadhar_linked": false,
-    "pan_linked": true,
-    "address": "Patna, Bihar",
-    "email": "manish.tiwari@email.com",
-    "risk_score": 50
-  },
-  "9088888888": {
-    "owner_name": "Neha Kapoor",
-    "provider": "VI",
-    "activation_date": "2022-11-05",
-    "kyc_status": "verified",
-    "aadhar_linked": true,
-    "pan_linked": true,
-    "address": "Noida, Uttar Pradesh",
-    "email": "neha.kapoor@email.com",
-    "risk_score": 18
-  },
-  "9099999999": {
-    "owner_name": "Deepak Sinha",
-    "provider": "Airtel",
-    "activation_date": "2025-12-30",
-    "kyc_status": "pending",
-    "aadhar_linked": false,
-    "pan_linked": false,
-    "address": "Ranchi, Jharkhand",
-    "email": "deepak.sinha@email.com",
-    "risk_score": 55
-  },
-  "9100000000": {
-    "owner_name": "Tanvi Joshi",
-    "provider": "Jio",
-    "activation_date": "2016-01-19",
-    "kyc_status": "verified",
-    "aadhar_linked": true,
-    "pan_linked": true,
-    "address": "Surat, Gujarat",
-    "email": "tanvi.joshi@email.com",
-    "risk_score": 6
-  },
-  "9111111111": {
-    "owner_name": "Aditya Malhotra",
-    "provider": "VI",
-    "activation_date": "2026-02-25",
-    "kyc_status": "unverified",
-    "aadhar_linked": false,
-    "pan_linked": false,
-    "address": "Indore, Madhya Pradesh",
-    "email": "aditya.m@email.com",
-    "risk_score": 90
-  },
-  "9133333333": {
-    "owner_name": "Shruti Kulkarni",
-    "provider": "BSNL",
-    "activation_date": "2021-08-17",
-    "kyc_status": "verified",
-    "aadhar_linked": true,
-    "pan_linked": true,
-    "address": "Nagpur, Maharashtra",
-    "email": "shruti.k@email.com",
-    "risk_score": 15
-  },
-  "9144444444": {
-    "owner_name": "Harsh Vardhan",
-    "provider": "Jio",
-    "activation_date": "2026-02-18",
-    "kyc_status": "pending",
-    "aadhar_linked": false,
-    "pan_linked": true,
-    "address": "Varanasi, Uttar Pradesh",
-    "email": "harsh.v@email.com",
-    "risk_score": 45
-  },
-  "9155555555": {
-    "owner_name": "Divya Sharma",
-    "provider": "Airtel",
-    "activation_date": "2019-10-09",
-    "kyc_status": "verified",
-    "aadhar_linked": true,
-    "pan_linked": true,
-    "address": "Gurgaon, Haryana",
-    "email": "divya.sharma@email.com",
-    "risk_score": 9
-  },
-  "9166666666": {
-    "owner_name": "Akash Patel",
-    "provider": "VI",
-    "activation_date": "2026-01-15",
-    "kyc_status": "pending",
-    "aadhar_linked": false,
-    "pan_linked": false,
-    "address": "Vadodara, Gujarat",
-    "email": "akash.patel@email.com",
-    "risk_score": 65
-  }
-
-}
