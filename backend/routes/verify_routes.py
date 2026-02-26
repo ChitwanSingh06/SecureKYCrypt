@@ -1,7 +1,8 @@
-from flask import Blueprint, request, jsonify, session
+from flask import Blueprint, request, jsonify
 from services.risk_service import RiskService
 from services.telecom_service import TelecomService
 from services.ownership_service import OwnershipService
+from services.tracking_service import tracking_service
 import uuid
 from datetime import datetime
 import logging
@@ -10,13 +11,20 @@ import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+# Create blueprint FIRST
 verify_bp = Blueprint('verify', __name__)
+
+# Initialize services
 risk_service = RiskService()
 telecom_service = TelecomService()
 ownership_service = OwnershipService()
 
 # Store session data (in production, use database)
 user_sessions = {}
+
+# ============================================
+# EXISTING ENDPOINTS (Keep all your existing ones)
+# ============================================
 
 @verify_bp.route('/api/verify/start', methods=['POST'])
 def start_verification():
@@ -255,6 +263,14 @@ def get_risk_assessment():
             session_data['behavior_data']
         )
         
+        # Track login in tracking service
+        tracking_service.track_user_login(
+            session_data['user_data'],
+            risk_result['risk_score'],
+            risk_result['risk_level'],
+            session_id
+        )
+        
         # Add session info
         risk_result['session_id'] = session_id
         risk_result['verification_time'] = datetime.now().isoformat()
@@ -312,6 +328,66 @@ def check_name_match():
     except Exception as e:
         logger.error(f"Error in check_name_match: {str(e)}")
         return jsonify({'error': 'Internal server error'}), 500
+
+# ============================================
+# NEW TRACKING ENDPOINTS (Add these at the bottom)
+# ============================================
+
+@verify_bp.route('/api/track/transaction', methods=['POST'])
+def track_transaction():
+    """Track a transaction"""
+    try:
+        data = request.json
+        session_id = data.get('session_id')
+        
+        if not session_id:
+            return jsonify({'error': 'No session ID'}), 400
+        
+        transaction = tracking_service.track_transaction(session_id, data['transaction'])
+        
+        return jsonify({
+            'success': True,
+            'transaction': transaction,
+            'blocked': transaction.get('status') == 'failed' if transaction else False
+        })
+        
+    except Exception as e:
+        logger.error(f"Error tracking transaction: {e}")
+        return jsonify({'error': str(e)}), 500
+
+@verify_bp.route('/api/track/action', methods=['POST'])
+def track_action():
+    """Track user action"""
+    try:
+        data = request.json
+        session_id = data.get('session_id')
+        
+        if not session_id:
+            return jsonify({'error': 'No session ID'}), 400
+        
+        tracking_service.track_action(session_id, data['action'])
+        
+        return jsonify({'success': True})
+        
+    except Exception as e:
+        logger.error(f"Error tracking action: {e}")
+        return jsonify({'error': str(e)}), 500
+
+@verify_bp.route('/api/admin/dashboard', methods=['GET'])
+def get_admin_dashboard():
+    """Get admin dashboard data"""
+    try:
+        # Simple auth for demo
+        auth = request.headers.get('Authorization')
+        if auth != 'admin-secret':
+            return jsonify({'error': 'Unauthorized'}), 401
+        
+        data = tracking_service.get_admin_dashboard_data()
+        return jsonify(data)
+        
+    except Exception as e:
+        logger.error(f"Error getting admin data: {e}")
+        return jsonify({'error': str(e)}), 500
 
 @verify_bp.route('/api/verify/session/<session_id>', methods=['GET'])
 def get_session_info(session_id):

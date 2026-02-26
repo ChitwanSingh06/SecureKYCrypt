@@ -1,164 +1,227 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import apiService from '../services/api';
-import deviceFingerprint from '../utils/deviceFingerprint';
-// import BehaviorTracker from '../utils/behaviorTracker';  // COMMENT THIS OUT
 
 function LoginPage() {
+    const navigate = useNavigate();
+    const [isLogin, setIsLogin] = useState(true);
     const [formData, setFormData] = useState({
         name: '',
         mobile: '',
-        email: ''
+        email: '',
+        password: '',
+        confirmPassword: ''
     });
     const [loading, setLoading] = useState(false);
-    const [verificationResult, setVerificationResult] = useState(null);
-    // const [behaviorTracker, setBehaviorTracker] = useState(null);  // COMMENT THIS OUT
+    const [error, setError] = useState('');
 
-    useEffect(() => {
-        // COMMENT OUT ALL THIS
-        // const tracker = new BehaviorTracker(apiService);
-        // tracker.setupHoneypot();
-        // setBehaviorTracker(tracker);
-        // tracker.trackLoginSpeed();
-        
-        console.log('Login page loaded (tracking disabled)');
-    }, []);
+    const handleChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        });
+    };
 
-    const handleSubmit = async (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
         setLoading(true);
+        setError('');
 
         try {
-            // COMMENT THIS OUT
-            // if (behaviorTracker) {
-            //     behaviorTracker.trackLoginComplete();
-            // }
-
             // Start verification
             await apiService.startVerification(formData);
 
-            // Check name match with telecom database
-            const nameCheck = await apiService.checkNameMatch(
-                formData.mobile,
-                formData.name
-            );
+            // Check name match
+            const nameCheck = await apiService.checkNameMatch(formData.mobile, formData.name);
 
-            // Generate device fingerprint
-            const fingerprint = await deviceFingerprint.generate();
-            await apiService.registerDevice(fingerprint);
-
-            // Get final risk assessment
+            // Get risk assessment
             const risk = await apiService.getRiskAssessment();
 
-            setVerificationResult({
-                nameCheck,
-                risk
+            // Store user info
+            sessionStorage.setItem('userName', formData.name);
+            sessionStorage.setItem('userMobile', formData.mobile);
+            sessionStorage.setItem('riskScore', risk.risk_score);
+            sessionStorage.setItem('sessionId', apiService.sessionId);
+            sessionStorage.setItem('isNewUser', 'false');
+
+            // Track login
+            await fetch('http://localhost:5000/api/track/action', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    session_id: apiService.sessionId,
+                    action: {
+                        action: 'login',
+                        page: 'login',
+                        details: { method: 'password' }
+                    }
+                })
             });
 
             // Redirect based on risk
-            if (risk.risk_level === 'HIGH' || risk.risk_level === 'CRITICAL') {
-                setTimeout(() => {
-                    window.location.href = '/honeypot';
-                }, 2000);
+            if (risk.risk_score > 50) {
+                navigate('/fake-wallet');
             } else {
-                setTimeout(() => {
-                    window.location.href = '/dashboard';
-                }, 2000);
+                navigate('/wallet');
             }
 
         } catch (error) {
-            console.error('Verification failed:', error);
-            alert('Error connecting to server. Make sure backend is running!');
+            setError('Login failed: ' + error.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleSignup = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        setError('');
+
+        if (formData.password !== formData.confirmPassword) {
+            setError('Passwords do not match');
+            setLoading(false);
+            return;
+        }
+
+        try {
+            // Start verification
+            await apiService.startVerification(formData);
+
+            // Store user info - NEW USERS ARE AUTOMATICALLY SUSPICIOUS
+            sessionStorage.setItem('userName', formData.name);
+            sessionStorage.setItem('userMobile', formData.mobile);
+            sessionStorage.setItem('riskScore', '75'); // High risk for new users
+            sessionStorage.setItem('sessionId', apiService.sessionId);
+            sessionStorage.setItem('isNewUser', 'true');
+
+            // Track new account creation
+            await fetch('http://localhost:5000/api/track/action', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    session_id: apiService.sessionId,
+                    action: {
+                        action: 'account_creation',
+                        page: 'signup',
+                        details: { isNewUser: true }
+                    }
+                })
+            });
+
+            // New users go to fake wallet for monitoring
+            navigate('/fake-wallet');
+
+        } catch (error) {
+            setError('Signup failed: ' + error.message);
         } finally {
             setLoading(false);
         }
     };
 
     return (
-        <div className="login-container">
-            <h1>HoneyKYC - Mobile Ownership Verification</h1>
-            
-            {!apiService.sessionId && (
-                <div style={{ 
-                    background: '#fff3cd', 
-                    color: '#856404', 
-                    padding: '10px', 
-                    borderRadius: '5px',
-                    marginBottom: '20px',
-                    textAlign: 'center'
-                }}>
-                    ⚠️ Make sure backend is running on port 5000
-                </div>
-            )}
-            
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label>Full Name (as per bank records)</label>
-                    <input
-                        type="text"
-                        value={formData.name}
-                        onChange={(e) => setFormData({...formData, name: e.target.value})}
-                        required
-                    />
+        <div className="auth-container">
+            <div className="auth-card">
+                <div className="auth-header">
+                    <h1>🏦 SecureKYCrypt</h1>
+                    <p>Next-Gen Fraud Detection System</p>
                 </div>
 
-                <div className="form-group">
-                    <label>Mobile Number</label>
-                    <input
-                        type="tel"
-                        value={formData.mobile}
-                        onChange={(e) => setFormData({...formData, mobile: e.target.value})}
-                        pattern="[0-9]{10}"
-                        required
-                    />
+                <div className="auth-tabs">
+                    <button 
+                        className={`tab ${isLogin ? 'active' : ''}`}
+                        onClick={() => setIsLogin(true)}
+                    >
+                        Login
+                    </button>
+                    <button 
+                        className={`tab ${!isLogin ? 'active' : ''}`}
+                        onClick={() => setIsLogin(false)}
+                    >
+                        Create Account
+                    </button>
                 </div>
 
-                <div className="form-group">
-                    <label>Email (optional)</label>
-                    <input
-                        type="email"
-                        value={formData.email}
-                        onChange={(e) => setFormData({...formData, email: e.target.value})}
-                    />
-                </div>
+                {error && <div className="error-message">{error}</div>}
 
-                <button type="submit" disabled={loading}>
-                    {loading ? 'Verifying...' : 'Verify Ownership'}
-                </button>
-            </form>
-
-            {verificationResult && (
-                <div className="verification-result">
-                    <h3>Verification Result</h3>
-                    
-                    <div className="result-card">
-                        <h4>Telecom Owner Check</h4>
-                        <p>Status: {verificationResult.nameCheck.match ? '✅ Match' : '❌ Mismatch'}</p>
-                        <p>Telecom Owner: {verificationResult.nameCheck.telecom_owner}</p>
-                        <p>SIM Age: {verificationResult.nameCheck.sim_age_days} days</p>
+                <form onSubmit={isLogin ? handleLogin : handleSignup}>
+                    <div className="form-group">
+                        <label>Full Name</label>
+                        <input
+                            type="text"
+                            name="name"
+                            value={formData.name}
+                            onChange={handleChange}
+                            placeholder="Enter your full name"
+                            required
+                        />
                     </div>
 
-                    <div className="result-card">
-                        <h4>Risk Assessment</h4>
-                        <p>Risk Score: {verificationResult.risk.risk_score}</p>
-                        <p>Risk Level: 
-                            <span className={`risk-${verificationResult.risk.risk_level?.toLowerCase()}`}>
-                                {verificationResult.risk.risk_level}
-                            </span>
-                        </p>
-                        
-                        {verificationResult.risk.risk_factors?.length > 0 && (
-                            <div>
-                                <h5>Risk Factors:</h5>
-                                <ul>
-                                    {verificationResult.risk.risk_factors.map((factor, i) => (
-                                        <li key={i}>{factor}</li>
-                                    ))}
-                                </ul>
+                    <div className="form-group">
+                        <label>Mobile Number</label>
+                        <input
+                            type="tel"
+                            name="mobile"
+                            value={formData.mobile}
+                            onChange={handleChange}
+                            placeholder="10 digit mobile number"
+                            pattern="[0-9]{10}"
+                            required
+                        />
+                    </div>
+
+                    {!isLogin && (
+                        <>
+                            <div className="form-group">
+                                <label>Email</label>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    placeholder="Enter your email"
+                                    required
+                                />
                             </div>
-                        )}
+                            <div className="form-group">
+                                <label>Password</label>
+                                <input
+                                    type="password"
+                                    name="password"
+                                    value={formData.password}
+                                    onChange={handleChange}
+                                    placeholder="Create password"
+                                    required
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Confirm Password</label>
+                                <input
+                                    type="password"
+                                    name="confirmPassword"
+                                    value={formData.confirmPassword}
+                                    onChange={handleChange}
+                                    placeholder="Confirm password"
+                                    required
+                                />
+                            </div>
+                        </>
+                    )}
+
+                    <button type="submit" className="auth-button" disabled={loading}>
+                        {loading ? 'Processing...' : (isLogin ? 'Login' : 'Create Account')}
+                    </button>
+                </form>
+
+                <div className="auth-footer">
+                    <p>Admin? <a href="/admin">Access Dashboard →</a></p>
+                    <div className="demo-accounts">
+                        <p><strong>Demo:</strong></p>
+                        <p>✅ Real User: Rahul Sharma / 9876543210</p>
+                        <p>🚫 Fraud Test: Fake Name / 8888888888</p>
+                        <p>🆕 New Account: Create account → Auto suspicious</p>
                     </div>
                 </div>
-            )}
+            </div>
         </div>
     );
 }

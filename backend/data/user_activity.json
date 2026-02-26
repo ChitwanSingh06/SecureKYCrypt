@@ -1,0 +1,238 @@
+{
+  "users": {
+    "9876543210": {
+      "name": "Rahul Sharma",
+      "mobile": "9876543210",
+      "email": "",
+      "created_at": "2026-02-26T17:43:40.648050",
+      "total_logins": 2,
+      "total_suspicious_actions": 0,
+      "risk_score": 20,
+      "risk_level": "LOW",
+      "transactions": [
+        {
+          "id": 1,
+          "timestamp": "2026-02-26T18:17:57.468397",
+          "user": "9876543210",
+          "user_name": "Rahul Sharma",
+          "type": "debit",
+          "amount": 1000,
+          "recipient": "example@okhdfcbank",
+          "status": "completed"
+        }
+      ],
+      "sessions": [],
+      "last_login": "2026-02-26T18:17:38.717936"
+    },
+    "8888888888": {
+      "name": "Fake Name",
+      "mobile": "8888888888",
+      "email": "",
+      "created_at": "2026-02-26T18:18:04.985544",
+      "total_logins": 1,
+      "total_suspicious_actions": 0,
+      "risk_score": 105,
+      "risk_level": "CRITICAL",
+      "transactions": [
+        {
+          "id": 2,
+          "timestamp": "2026-02-26T18:18:26.390254",
+          "user": "8888888888",
+          "user_name": "Fake Name",
+          "type": "debit",
+          "amount": 50000,
+          "recipient": "rahulsharma@okicici",
+          "status": "completed"
+        }
+      ],
+      "sessions": [],
+      "last_login": "2026-02-26T18:18:04.985549"
+    }
+  },
+  "sessions": {
+    "32512342-06b8-41c6-9613-91bcbd800eb9": {
+      "user": "9876543210",
+      "user_name": "Rahul Sharma",
+      "login_time": "2026-02-26T17:43:40.648054",
+      "risk_score": 20,
+      "risk_level": "LOW",
+      "actions": [
+        {
+          "timestamp": "2026-02-26T17:43:40.653334",
+          "action": "login",
+          "page": "",
+          "details": {
+            "method": "password"
+          }
+        },
+        {
+          "timestamp": "2026-02-26T18:17:32.750323",
+          "action": "logout",
+          "page": "real_wallet",
+          "details": {}
+        }
+      ],
+      "transactions": [],
+      "balance": 50000
+    },
+    "733e49b4-9049-4dea-8863-bcd8b94867ac": {
+      "user": "9876543210",
+      "user_name": "Rahul Sharma",
+      "login_time": "2026-02-26T18:17:38.717937",
+      "risk_score": 20,
+      "risk_level": "LOW",
+      "actions": [
+        {
+          "timestamp": "2026-02-26T18:17:38.724723",
+          "action": "login",
+          "page": "login",
+          "details": {
+            "method": "password"
+          }
+        },
+        {
+          "timestamp": "2026-02-26T18:17:57.493347",
+          "action": "transaction_success",
+          "page": "real_wallet",
+          "details": {
+            "amount": 1000,
+            "recipient": "example@okhdfcbank"
+          }
+        },
+        {
+          "timestamp": "2026-02-26T18:18:00.574447",
+          "action": "logout",
+          "page": "real_wallet",
+          "details": {}
+        }
+      ],
+      "transactions": [
+        {
+          "id": 1,
+          "timestamp": "2026-02-26T18:17:57.468397",
+          "user": "9876543210",
+          "user_name": "Rahul Sharma",
+          "type": "debit",
+          "amount": 1000,
+          "recipient": "example@okhdfcbank",
+          "status": "completed"
+        }
+      ],
+      "balance": 49000
+    },
+    "c202c42d-6024-4d2e-8784-a33deceb18a0": {
+      "user": "8888888888",
+      "user_name": "Fake Name",
+      "login_time": "2026-02-26T18:18:04.985552",
+      "risk_score": 105,
+      "risk_level": "CRITICAL",
+      "actions": [
+        {
+          "timestamp": "2026-02-26T18:18:04.996313",
+          "action": "login",
+          "page": "login",
+          "details": {
+            "method": "password"
+          }
+        },
+        {
+          "timestamp": "2026-02-26T18:18:26.382662",
+          "action": "suspicious_transfer",
+          "page": "fake_wallet",
+          "details": {
+            "amount": 50000,
+            "recipient": "rahulsharma@okicici",
+            "isNewUser": false,
+            "userMobile": "8888888888"
+          }
+        },
+        {
+          "timestamp": "2026-02-26T18:18:34.238939",
+          "action": "failed_transaction",
+          "page": "fake_wallet",
+          "details": {
+            "reason": "insufficient_balance",
+            "amount": 100,
+            "isNewUser": false,
+            "userMobile": "8888888888"
+          }
+        },
+        {
+          "timestamp": "2026-02-26T18:18:35.610552",
+          "action": "logout",
+          "page": "fake_wallet",
+          "details": {
+            "suspicious": true,
+            "isNewUser": false,
+            "userMobile": "8888888888"
+          }
+        }
+      ],
+      "transactions": [
+        {
+          "id": 2,
+          "timestamp": "2026-02-26T18:18:26.390254",
+          "user": "8888888888",
+          "user_name": "Fake Name",
+          "type": "debit",
+          "amount": 50000,
+          "recipient": "rahulsharma@okicici",
+          "status": "completed"
+        }
+      ],
+      "balance": 0
+    }
+  },
+  "transactions": [
+    {
+      "id": 1,
+      "timestamp": "2026-02-26T18:17:57.468397",
+      "user": "9876543210",
+      "user_name": "Rahul Sharma",
+      "type": "debit",
+      "amount": 1000,
+      "recipient": "example@okhdfcbank",
+      "status": "completed"
+    },
+    {
+      "id": 2,
+      "timestamp": "2026-02-26T18:18:26.390254",
+      "user": "8888888888",
+      "user_name": "Fake Name",
+      "type": "debit",
+      "amount": 50000,
+      "recipient": "rahulsharma@okicici",
+      "status": "completed"
+    },
+    {
+      "id": 3,
+      "timestamp": "2026-02-26T18:18:34.252542",
+      "user": "8888888888",
+      "user_name": "Fake Name",
+      "type": "debit",
+      "amount": 100,
+      "recipient": "o",
+      "status": "failed",
+      "reason": "insufficient_balance"
+    }
+  ],
+  "suspicious_activity": [
+    {
+      "user": "8888888888",
+      "user_name": "Fake Name",
+      "timestamp": "2026-02-26T18:18:34.252562",
+      "reason": "Failed transaction attempt: Insufficient balance for \u20b9100",
+      "details": {
+        "id": 3,
+        "timestamp": "2026-02-26T18:18:34.252542",
+        "user": "8888888888",
+        "user_name": "Fake Name",
+        "type": "debit",
+        "amount": 100,
+        "recipient": "o",
+        "status": "failed",
+        "reason": "insufficient_balance"
+      }
+    }
+  ]
+}
